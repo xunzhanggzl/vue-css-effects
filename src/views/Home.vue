@@ -10,20 +10,230 @@
         <option value="button">Buttons</option>
       </select>
     </div>
+    <div class="wrapper">
+      <Box :key="box.className" v-bind="box" v-for="box in visibleBoxes">
+        <div slot="innerHtml" v-html="box.text"></div>
+        <!-- <span v-html="box.text"></span> -->
+      </Box>
+    </div>
   </div>
 </template>
 
 <script>
+import rawCss from '@/styles/index'
+import Box from '@/components/Box.vue'
+
 export default {
   name: 'home',
+  components: {
+    Box
+  },
   data() {
     return {
-      filtered: 'all'
+      rawCss,
+      filtered: 'all',
+      visibleBoxes: []
     }
+  },
+  created() {
+    // console.log(rawCss)
+    this.visibleBoxes = this.filteredBoxes
   },
   methods: {
     updateVisibleBoxes() {
-      console.log(1)
+      this.visibleBoxes = this.filteredBoxes
+    }
+  },
+  computed: {
+    boxes() {
+      return [
+        {
+          rawCss: this.rawCss.borderLeftRight,
+          className: 'borderLeftRight',
+          category: 'textAnimation',
+          text: '<span>Hover me</span>'
+        },
+        {
+          rawCss: this.rawCss.donutSpinner,
+          className: 'donutSpinner',
+          category: 'animation',
+          text: ''
+        },
+        {
+          rawCss: this.rawCss.borderFade,
+          className: 'borderFade',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.depthButton,
+          className: 'depthButton',
+          category: 'button',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.arrowBounce,
+          className: 'arrowBounce',
+          category: 'animation',
+          text: ''
+        },
+        {
+          rawCss: this.rawCss.buttonLeft,
+          className: 'buttonLeft',
+          category: 'button',
+          text: '<span class="buttonLeftSpan">Hover me</span>'
+        },
+        {
+          rawCss: this.rawCss.gradientBorder,
+          className: 'gradientBorder',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.siblingFade,
+          className: 'siblingFade',
+          category: 'text',
+          text: '<span>Item 1 </span><span>Item 2 </span>'
+        },
+        {
+          rawCss: this.rawCss.borderCenter,
+          className: 'borderCenter',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.textAnimationLeft,
+          className: 'textAnimationLeft',
+          category: 'button',
+          text: '<span>Hover me</span>'
+        },
+        {
+          rawCss: this.rawCss.borderMarker,
+          className: 'borderMarker',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.gradientText,
+          className: 'gradientText',
+          category: 'text',
+          text: '<span>Hover me</span>'
+        },
+        {
+          rawCss: this.rawCss.lineThrough,
+          className: 'lineThrough',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.textRightLeft,
+          className: 'textRightLeft',
+          category: 'button',
+          text: '<span>Hover me</span>'
+        },
+        {
+          rawCss: this.rawCss.slideRight,
+          className: 'slideRight',
+          category: 'animation',
+          text: ''
+        },
+        {
+          rawCss: this.rawCss.borderRightLeft,
+          className: 'borderRightLeft',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.textZoom,
+          className: 'textZoom',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.iconRadius,
+          className: 'iconRadius',
+          category: 'animation',
+          text: ''
+        },
+        {
+          rawCss: this.rawCss.lineThroughBox,
+          className: 'lineThroughBox',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.pulseAnim,
+          className: 'pulseAnim',
+          category: 'animation',
+          text: ''
+        },
+        {
+          rawCss: this.rawCss.bouncingLoader,
+          className: 'bouncingLoader',
+          category: 'animation',
+          text: ''
+        },
+        {
+          rawCss: this.rawCss.swingHorizontal,
+          className: 'swingHorizontal',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.swingVertical,
+          className: 'swingVertical',
+          category: 'text',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.buttonOverlay,
+          className: 'buttonOverlay',
+          category: 'button',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.doubleDashed,
+          className: 'doubleDashed',
+          category: 'button',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.slideDown,
+          className: 'slideDown',
+          category: 'button',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.slideUp,
+          className: 'slideUp',
+          category: 'button',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.arrowFromLeft,
+          className: 'arrowFromLeft',
+          category: 'button',
+          text: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 9" width="9" height="9"> <path d="M0 0l7 4.5L0 9V0z"></path></svg><span>Hover me</span>'
+        },
+        {
+          rawCss: this.rawCss.pressDown,
+          className: 'pressDown',
+          category: 'button',
+          text: 'Hover me'
+        },
+        {
+          rawCss: this.rawCss.magnifyBorder,
+          className: 'magnifyBorder',
+          category: 'button',
+          text: 'Hover me'
+        }
+      ]
+    },
+    filteredBoxes() {
+      if (this.filtered === 'all') {
+        return this.boxes
+      }
+      return this.boxes.filter(box => box.category === this.filtered)
     }
   }
 }
@@ -64,4 +274,18 @@ export default {
       height 6px
       width 10px
       background: url("../assets/images/down-arrow.svg") no-repeat;
+
+  .wrapper
+    width 80%
+    margin 0 auto 4rem
+    display grid
+    grid-template-columns repeat(5, 1fr)
+    justify-content center
+    align-items center
+    grid-gap 15px
+    padding 20px
+
+    @media (max-width: 1000px)
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
 </style>

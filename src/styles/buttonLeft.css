@@ -1,0 +1,32 @@
+.buttonLeft {
+  height: 40px;
+  width: 120px;
+  padding: 0 14px;
+  overflow: hidden;
+  background: #474e51;
+  position: relative;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+}
+
+.buttonLeft::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateX(-100%);
+  background: #5778f3;
+  transition: transform 0.2s ease-in-out;
+}
+
+.buttonLeft:hover::before {
+  transform: translateX(0);
+}
+
+.buttonLeft span {
+  position: relative;
+  z-index: 1;
+}

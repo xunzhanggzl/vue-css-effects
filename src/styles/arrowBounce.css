@@ -1,0 +1,33 @@
+.arrowBounce {
+  animation: bounce 2s infinite;
+  color: #5778f3;
+  font-size: 22px;
+  position: relative;
+}
+
+.arrowBounce::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: url("../assets/images/scroll-arrow.svg") no-repeat;
+  height: 26px;
+  width: 18px;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
