@@ -5,11 +5,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isActive: false
   },
   mutations: {
+    showNotification(state) {
+      state.isActive = true
+    },
+    hideNotification(state) {
+      state.isActive = false
+    }
   },
   actions: {
-  },
-  modules: {
+    messageHandler({ commit }) {
+      commit('showNotification')
+      setTimeout(() => {
+        commit('hideNotification')
+      }, 1500)
+    }
   }
 })

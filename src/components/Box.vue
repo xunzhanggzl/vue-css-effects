@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" @click="isCopied" v-clipboard:copy="css">
     <div :class="className">
       <!-- <slot></slot> -->
       <slot name="innerHtml"></slot>
@@ -10,17 +10,28 @@
 <script>
 export default {
   name: 'Box.vue',
-  created() {
-    // console.log(this.rawCss)
-    // console.log(this.className)
+  data() {
+    return {
+      css: this.rawCss
+    }
   },
+  // created() {
+  //   console.log(this.rawCss)
+  //   // console.log(this.className)
+  // },
   props: {
     rawCss: {
+      type: String,
       default: ''
     },
     className: {
       type: String,
       default: ''
+    }
+  },
+  methods: {
+    isCopied() {
+      this.$store.dispatch('messageHandler')
     }
   }
 }

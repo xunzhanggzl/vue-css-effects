@@ -16,17 +16,23 @@
         <!-- <span v-html="box.text"></span> -->
       </Box>
     </div>
+    <transition name="fade">
+      <FlashMessage v-if="isActive"></FlashMessage>
+    </transition>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import rawCss from '@/styles/index'
 import Box from '@/components/Box.vue'
+import FlashMessage from '@/components/FlashMessage.vue'
 
 export default {
   name: 'home',
   components: {
-    Box
+    Box,
+    FlashMessage
   },
   data() {
     return {
@@ -234,12 +240,21 @@ export default {
         return this.boxes
       }
       return this.boxes.filter(box => box.category === this.filtered)
-    }
+    },
+    ...mapState(['isActive'])
   }
 }
 </script>
 
 <style lang="stylus" scoped>
+  .fade-enter-active,
+  .fade-leave-active
+    transition all 0.5s
+
+  .fade-enter,
+  .fade-leave-to
+    opacity 0
+
   h3
     text-align center
     font-size 2rem
